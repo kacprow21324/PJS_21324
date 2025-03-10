@@ -1,1 +1,1 @@
-# PS_LAB1
+Kacper Woszczyło 21324 
