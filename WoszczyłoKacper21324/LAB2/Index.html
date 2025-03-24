@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>Bootstrap demo</title>
+        <title>Moja Strona z LAB 3 i 4</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   
@@ -27,7 +27,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Laboratorium 3</a>
+                    <a class="navbar-brand text-light" href="#">Laboratorium 3 i 4</a>
 
                 </div>
                 
@@ -36,7 +36,7 @@
                     <ul class="navbar-nav ms-auto">
                     
                         <li class="active"> <a href="#main-page" title="Strona główna" class="nav-item me-3"> Strona główna </a> </li>
-                        <li class="nav-item me-3"> <a href="#" title="Galeria"> Galeria </a> </li>
+                        <li class="nav-item me-3"> <a href="#galeria" title="Galeria"> Galeria </a> </li>
                         <li class="nav-item me-3"> <a href="#" title="Kontakt"> Kontakt </a> </li>
                         <li class="nav-item me-3"> <a href="#" title="Jakaś robocza zakładka"> Jakaś robocza zakładka </a> </li>
                    
@@ -144,7 +144,7 @@
 
             <div class="container">
 
-                <h1>Pierwsza sekcja strony!</h1>
+                <h1>Strona główna</h1>
                 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget lacus luctus, euismod magna id, sodales tellus. Aenean pretium vestibulum mi, at dapibus odio maximus ut. Mauris fringilla felis porttitor massa venenatis, a accumsan ex mollis. Sed et turpis a massa gravida ultrices consequat eget lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In mollis erat in metus condimentum, et accumsan nibh auctor. Suspendisse nunc neque, imperdiet eget orci sed, sollicitudin rhoncus purus. Duis dignissim tincidunt magna vitae aliquam. Duis mollis purus vitae lacus tincidunt varius in non sapien. Phasellus non euismod est. Proin fermentum ultrices justo, eget vestibulum eros tristique et.</p>
 
@@ -156,8 +156,93 @@
 
         </section>
 
+        <section id="galeria">
 
+            <div class="container">
 
+                <h1 class="text-primary">Galeria</h1>
+                
+                <div class="text-center">
+
+                    <div class="row">
+                      
+                        <div class="col">
+                            
+                            <img src="img/2.jpg" style="height: 400px; width: 400px; border-radius: 50%;"  alt="...">
+                            <h3 class="text-primary-emphasis">Owczarek niemiecki</h3>
+                      
+                        </div>
+                      
+                        <div class="col">
+
+                            <img src="img/3.jpg" style="height: 400px; width: 400px; border-radius: 50%;" alt="...">
+                            <h3 class="text-primary-emphasis">Owczarek szwajcarski i kość</h3>
+                         
+                        </div>
+
+                        <div class="col">
+                            
+                            <img src="img/4.jpg" style="height: 400px; width: 400px; border-radius: 50%;" alt="...">
+                            <h3 class="text-primary-emphasis">Owczarek podchalański</h3>
+                        
+                        </div>
+                    
+                    </div>
+
+                    
+                  
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+
+            <div class="container">
+                
+                <a href="#" class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    
+                    Polityka prywatności
+                
+                </a>
+                
+            </div>
+        
+        </footer>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+            <div class="modal-dialog">
+              
+                <div class="modal-content">
+                    
+                    <div class="modal-header">
+
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nasza polityka prywatności:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+                    </div>
+
+                    <div class="modal-body">
+
+                        Narazie jej brak ale to się zmieni.
+
+                    </div>
+
+                    <div class="modal-footer">
+                  
+                        <button type="button" class="btn btn-primary btn-lg">Akcpetuj</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal"> <-------- I tak musisz zaakceptować</button>
+                         
+                    </div>
+              
+                </div>
+            
+            </div>
+          
+        </div>
+        
     </body>
 
 </html>
