@@ -38,7 +38,7 @@
                         <li class="active"> <a href="#main-page" title="Strona główna" class="nav-item me-3"> Strona główna </a> </li>
                         <li class="nav-item me-3"> <a href="#galeria" title="Galeria"> Galeria </a> </li>
                         <li class="nav-item me-3"> <a href="#" title="Kontakt"> Kontakt </a> </li>
-                        <li class="nav-item me-3"> <a href="#" title="Jakaś robocza zakładka"> Formularz </a> </li>
+                        <li class="nav-item me-3"> <a href="#" title="Formularz"> Formularz </a> </li>
                    
                     </ul>
                    
@@ -58,44 +58,74 @@
 
                     function checkForm(){
 
-                        var error=false; //to znaczy, że danych nie brakuje
+                        var error=false; 
                         
                         var contactName = document.getElementById("imieNazwisko");
                         var contactEmail = document.getElementById("email");
                         var contactInfo = document.getElementById("infor");
 
                         if (contactName.value == ""){
-                            
-                            document.getElementById("errorIN").className="d-block";
+                            document.getElementById("errorIN").className="d-block invalid-feedback";
+                            contactName.classList.add("is-invalid");
+                            contactName.classList.remove("is-valid");
                             error=true;
                         } else {
                             document.getElementById("errorIN").className="d-none";
+                            contactName.classList.add("is-valid");
+                            contactName.classList.remove("is-invalid");
                         }
 
                     
                         if (contactEmail.value == ""){
                             error=true;
-                            document.getElementById("errorAE").className="d-block";
+                            document.getElementById("errorAE").className="d-block invalid-feedback";
+                            contactEmail.classList.add("is-invalid");
+                            contactEmail.classList.remove("is-valid");
                             
                         } else {
                             document.getElementById("errorAE").className="d-none";
+                            contactEmail.classList.add("is-valid");
+                            contactEmail.classList.remove("is-invalid");
                             var email = contactEmail.value;
                             var regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;
                             if(regex.test(email)==false) {
-                                document.getElementById("errorFAE").className="d-block";
+                                error=true;
+                                document.getElementById("errorFAE").className="d-block invalid-feedback";
+                                contactEmail.classList.add("is-invalid");
+                                contactEmail.classList.remove("is-valid");
                             } else {
                                 document.getElementById("errorFAE").className="d-none";
+                                contactEmail.classList.add("is-valid");
+                                contactEmail.classList.remove("is-invalid");
                             }
                         }
 
-                    if(error=true){
-                        return false
-                    } else {
-                        return true
-                    }
-                        
-                        
+                        if (contactInfo.value == ""){
+                            error=true;
+                            document.getElementById("errorINFO").className="d-block invalid-feedback";
+                            contactInfo.classList.add("is-invalid");
+                            contactInfo.classList.remove("is-valid");
+                        } else {
+                            document.getElementById("errorINFO").className="d-none";
+                            contactInfo.classList.add("is-valid");
+                            contactInfo.classList.remove("is-invalid");
+                            if(contactInfo.value.length>250){
+                                error=true;
+                                document.getElementById("errorLINFO").className="d-block invalid-feedback";
+                                contactInfo.classList.add("is-invalid");
+                                contactInfo.classList.remove("is-valid");
+                            } else {
+                                document.getElementById("errorLINFO").className="d-none";
+                                contactInfo.classList.add("is-valid");
+                                contactInfo.classList.remove("is-invalid");
+                            }  
+                        }
 
+                        if(error==true){
+                            return false;
+                        } else {
+                            return true;
+                        }
                     }
 
                 </script> 
@@ -108,30 +138,29 @@
                         
                         <div class="mb-3">
                             
-                            <p id="errorIN" class="d-none">Podanie imienia i nazwiska jest wymagane!</p>
+                            
                             <label for="imieNazwisko" class="form-label">Imię i nazwisko:</label>
+                            <span id="errorIN" class="d-none">Podanie imienia i nazwiska jest wymagane!</span>
                             <input type="text" class="form-control" id="imieNazwisko">
                     
                         </div>
                         
                         <div class="mb-3">
                             
-                            <p id="errorAE" class="d-none">Podanie adresu email jest wymagane!</p>
-                            <p id="errorFAE" class="d-none">Email musi mieć forme: twojciagznakow@kolejnyciagznakow.nokolejnyciagznakowy</p>
                             <label for="email" class="form-label">Adres email:</label>
+                            <span id="errorAE" class="d-none">Podanie adresu email jest wymagane!</span>
+                            <span id="errorFAE" class="d-none">Email musi mieć forme: twojciagznakow@kolejnyciagznakow.nokolejnyciagznakowy</span>
                             <input type="text" class="form-control" id="email">
                         
                         </div>
 
-                        <div class="form-floating">
+                        <div class="mb-3">
 
-                            <p id="errorINFO" class="d-none">Uzupełnij informacje</p>
-                            <p id="errorLINFO" class="d-none">Można jedynie wysłać 250 znaków, więcej nie przejdzie...</p>
-
-                            <label for="infor">Informacje</label>
-                            <textarea class="form-control" placeholder="Zostaw informacje" id="infor" style="height: 100px"></textarea>
+                            <label for="infor" class="form-label">Informacje:</label>
+                            <span id="errorINFO" class="d-none">Uzupełnij informacje o sobie!</span>
+                            <span id="errorLINFO" class="d-none">Można jedynie wysłać 250 znaków, więcej nie przejdzie...</span>
+                            <textarea class="form-control" id="infor" style="height: 100px"></textarea>
                             
-
                         </div>
                     
                         <hr/>
