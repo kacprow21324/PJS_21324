@@ -18,6 +18,10 @@
 
         </script>
 
+        <script src="js/forms.js"> 
+
+        </script> 
+
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
             
             <div class="container">
@@ -35,10 +39,10 @@
                     
                     <ul class="navbar-nav ms-auto">
                     
-                        <li class="active"> <a href="#main-page" title="Strona główna" class="nav-item me-3"> Strona główna </a> </li>
-                        <li class="nav-item me-3"> <a href="#galeria" title="Galeria"> Galeria </a> </li>
-                        <li class="nav-item me-3"> <a href="#" title="Kontakt"> Kontakt </a> </li>
-                        <li class="nav-item me-3"> <a href="#" title="Formularz"> Formularz </a> </li>
+                        <li class="active"> <a href="./../LAB2/Index.html#main-page" title="Strona główna" class="nav-item me-3"> Strona główna </a> </li>
+                        <li class="nav-item me-3"> <a href="./../LAB2/Index.html#galeria" title="Galeria"> Galeria </a> </li>
+                        <li class="nav-item me-3"> <a href="./../../index.html" title="Kontakt"> Kontakt </a> </li>
+                        <li class="nav-item me-3"> <a href="./index.html" title="Formularz"> Formularz </a> </li>
                    
                     </ul>
                    
@@ -54,82 +58,6 @@
 
                 <h1 class="text-primary">Formularz</h1>
 
-                <script>
-
-                    function checkForm(){
-
-                        var error=false; 
-                        
-                        var contactName = document.getElementById("imieNazwisko");
-                        var contactEmail = document.getElementById("email");
-                        var contactInfo = document.getElementById("infor");
-
-                        if (contactName.value == ""){
-                            document.getElementById("errorIN").className="d-block invalid-feedback";
-                            contactName.classList.add("is-invalid");
-                            contactName.classList.remove("is-valid");
-                            error=true;
-                        } else {
-                            document.getElementById("errorIN").className="d-none";
-                            contactName.classList.add("is-valid");
-                            contactName.classList.remove("is-invalid");
-                        }
-
-                    
-                        if (contactEmail.value == ""){
-                            error=true;
-                            document.getElementById("errorAE").className="d-block invalid-feedback";
-                            contactEmail.classList.add("is-invalid");
-                            contactEmail.classList.remove("is-valid");
-                            
-                        } else {
-                            document.getElementById("errorAE").className="d-none";
-                            contactEmail.classList.add("is-valid");
-                            contactEmail.classList.remove("is-invalid");
-                            var email = contactEmail.value;
-                            var regex = /^[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\.)+[a-zA-Z0-9.-]{2,4}$/;
-                            if(regex.test(email)==false) {
-                                error=true;
-                                document.getElementById("errorFAE").className="d-block invalid-feedback";
-                                contactEmail.classList.add("is-invalid");
-                                contactEmail.classList.remove("is-valid");
-                            } else {
-                                document.getElementById("errorFAE").className="d-none";
-                                contactEmail.classList.add("is-valid");
-                                contactEmail.classList.remove("is-invalid");
-                            }
-                        }
-
-                        if (contactInfo.value == ""){
-                            error=true;
-                            document.getElementById("errorINFO").className="d-block invalid-feedback";
-                            contactInfo.classList.add("is-invalid");
-                            contactInfo.classList.remove("is-valid");
-                        } else {
-                            document.getElementById("errorINFO").className="d-none";
-                            contactInfo.classList.add("is-valid");
-                            contactInfo.classList.remove("is-invalid");
-                            if(contactInfo.value.length>250){
-                                error=true;
-                                document.getElementById("errorLINFO").className="d-block invalid-feedback";
-                                contactInfo.classList.add("is-invalid");
-                                contactInfo.classList.remove("is-valid");
-                            } else {
-                                document.getElementById("errorLINFO").className="d-none";
-                                contactInfo.classList.add("is-valid");
-                                contactInfo.classList.remove("is-invalid");
-                            }  
-                        }
-
-                        if(error==true){
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
-
-                </script> 
-                
                 <fieldset>
 
                     <form action="index.html" method="post" onsubmit="return checkForm();">
@@ -141,7 +69,7 @@
                             
                             <label for="imieNazwisko" class="form-label">Imię i nazwisko:</label>
                             <span id="errorIN" class="d-none">Podanie imienia i nazwiska jest wymagane!</span>
-                            <input type="text" class="form-control" id="imieNazwisko">
+                            <input type="text" class="form-control" id="imieNazwisko" onblur="vImiNaz()">
                     
                         </div>
                         
@@ -149,8 +77,8 @@
                             
                             <label for="email" class="form-label">Adres email:</label>
                             <span id="errorAE" class="d-none">Podanie adresu email jest wymagane!</span>
-                            <span id="errorFAE" class="d-none">Email musi mieć forme: twojciagznakow@kolejnyciagznakow.nokolejnyciagznakowy</span>
-                            <input type="text" class="form-control" id="email">
+                            <span id="errorFAE" class="d-none">Email musi mieć forme: twojCiagZnakow@kolejnyCiagZnakow.ciagZnakowAleZawierajacyOd2Do4Liter</span>
+                            <input type="text" class="form-control" id="email" onblur="vAdrEma()">
                         
                         </div>
 
@@ -159,13 +87,14 @@
                             <label for="infor" class="form-label">Informacje:</label>
                             <span id="errorINFO" class="d-none">Uzupełnij informacje o sobie!</span>
                             <span id="errorLINFO" class="d-none">Można jedynie wysłać 250 znaków, więcej nie przejdzie...</span>
-                            <textarea class="form-control" id="infor" style="height: 100px"></textarea>
+                            <textarea class="form-control" id="infor" style="height: 100px" onblur="vInfo()"></textarea>
                             
                         </div>
                     
                         <hr/>
 
-                        <button type="submit" class="btn btn-primary">Wyślij</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Wyślij</button>
+                        <span id="submitWiadomosc" class="d-none text-danger">- Nie udało się przesłać formularza - popraw odpowiednio błędy!</span>
                     
                     </form>
 
