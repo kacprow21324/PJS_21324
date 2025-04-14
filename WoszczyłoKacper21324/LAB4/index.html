@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pl">
+    
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Testowanie Javy</title>
+
+        <link rel="stylesheet" href="./../Różne/styl.css">
+
+    
+    </head>
+  
+    <body>
+
+        <nav>
+            
+            <h1>Testowanie java scripta</h1>
+
+        </nav>
+
+        <header id="main-page">
+
+            <span id="imie"> </span>
+ 
+            <span id="nazwisko"> </span>
+
+        </header>
+
+        <section>
+        
+            <span id="t1"> </span>
+            <span id="t2"> </span>
+            
+
+            <script>
+
+                const panstwa = ['Watykan',
+                                'San Marino',   
+                                'Andora',   
+                                'Monako',
+                                'Lichtenstein'
+                            ];
+    
+                panstwa[panstwa.length-1] = 'Czechosłowacja';
+
+                panstwa[5]='Kosowo';
+
+                panstwa[panstwa.length]='Bośnia i Hercegowina';
+
+                panstwa.push('Serbia','Chorwacja','Słowenia');
+
+                panstwa.unshift('Czarnogóra','Macedonia Północna');
+
+                panstwa.pop();
+                panstwa.shift();
+                
+                var pobierz = document.getElementById('t1')
+                var pobierz2 = document.getElementById('t2')
+               
+                pobierz.innerHTML=panstwa[2];
+                pobierz2.innerHTML=panstwa[panstwa.length-1];
+
+                //---------------------------------------------------------------------------\\
+
+                panstwaAzja=['Indonezja','Singapur','Brunei','Timor Wchodni','Papua Nowa Gwinea'];
+
+                document.write('<p>Pierwszy element to <strong>');
+                document.write(panstwaAzja[0] + '</strong></p>');
+                
+                document.write('<p>Ostatni element to <strong>');
+                document.write(panstwaAzja[panstwaAzja.length-1] + '</strong></p>');
+
+                panstwaAzja.unshift('Malezja');
+
+                document.write('<p>Element pierwszy teraz to <strong>');
+                document.write(panstwaAzja[0] + '</strong></p>');
+                
+                //---------------------------------------------------------------------------\\
+
+                const Zmienna = document.scripts.length
+                document.write("<p>Ilosc Elementów <i>"+Zmienna+"</i>  bo w sumie tylko jeden script jest...</p>")
+                
+                //----------------------------------------------------------------------------\\
+
+                im = document.getElementById("imie");
+                na = document.getElementById("nazwisko");
+
+                im.innerHTML="Kacper";
+                na.innerHTML="Woszczyło";
+                
+                var i = 0;
+                while(i<panstwaAzja.length/2){
+                    var t = i+1
+                    document.write("<p>Panstwo "+t+" "+panstwaAzja[i]+"</p>");
+                    i++
+                }
+
+
+
+    
+            </script>
+
+
+        </section>
+
+        <footer>
+        
+            Autor: Kacper Woszczyło Nr. indeksu: 21324 Data aktualizacji: 14.04.2025
+        
+        </footer>
+
+    </body>
+
+</html>
