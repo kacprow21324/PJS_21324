@@ -21,94 +21,226 @@
 
         </nav>
 
-        <header id="main-page">
+        <section id="main-page" class="Srodek">
 
-            <span id="imie"> </span>
- 
-            <span id="nazwisko"> </span>
+            <section id="zad1">
+                <script>
 
-        </header>
+                    document.write("<br/><br/><h3>ZADANIE 1.</h3>");
 
-        <section>
-        
-            <span id="t1"> </span>
-            <span id="t2"> </span>
+                    const panstwa = ['Watykan',
+                                    'San Marino',   
+                                    'Andora',   
+                                    'Monako',
+                                    'Lichtenstein'
+                                ];
+
+                    document.write("<span>Jeden z elementów tablicy: " + panstwa[2] + "</span><br/>");
+                    
+                    panstwa[panstwa.length-1] = 'Czechosłowacja';
+
+                    document.write("<span>Zmodyfikowany ostatni element:  " + panstwa[panstwa.length-1] + "</span><br/>");
+
+                    panstwa[5]='Kosowo';
+
+                    panstwa[panstwa.length]='Bośnia i Hercegowina';
+
+                    panstwa.push('Serbia','Chorwacja','Słowenia');
+
+                    panstwa.unshift('Czarnogóra','Macedonia Północna');
+
+                    panstwa.pop();
+
+                    panstwa.shift();
+
+                </script>
+
+            </section>
+
+            <section id="zad2">
+
+                <script>
+
+                    document.write("<h3>ZADANIE 2.</h3>");
+
+                    panstwaAzja=[   'Indonezja',
+                                    'Singapur',
+                                    'Brunei',
+                                    'Timor Wchodni',
+                                    'Papua Nowa Gwinea'];
+
+                    document.write('<p>Pierwszy element to <strong>');
+                    document.write(panstwaAzja[0] + '</strong></p>');
+                    
+                    document.write('<p>Ostatni element to <strong>');
+                    document.write(panstwaAzja[panstwaAzja.length-1] + '</strong></p>');
+
+                    panstwaAzja.unshift('Malezja');
+
+                    document.write('<p>Element pierwszy teraz to <strong>');
+                    document.write(panstwaAzja[0] + '</strong></p>');
+
+                </script>
+
+            </section>
+
+            <section id="zad3">
+
+                <script>
+                
+                    document.write("<h3>ZADANIE 3.</h3>");
+
+                    const s1 = document.getElementById('zad1');
+                    
+                    const lH3_s1 = s1.getElementsByTagName('h3').length;
+                    const lP_s1 = s1.getElementsByTagName('p').length;
+                    const lStrong_s1 = s1.getElementsByTagName('strong').length;
+                    const lSpan_s1 = s1.getElementsByTagName('span').length;
+                    const lBr_s1 = s1.getElementsByTagName('br').length;
+
+                    const suma_s1 = lH3_s1 + lP_s1 + lStrong_s1 + lSpan_s1 + lBr_s1;
+
+                    document.write("<strong>Sekcja zad1:</strong><br>");
+                    document.write("Liczba elementów h3: " + lH3_s1 + "<br>");
+                    document.write("Liczba elementów p: " + lP_s1 + "<br>");
+                    document.write("Liczba elementów strong: " + lStrong_s1 + "<br>");
+                    document.write("Liczba elementów span: " + lSpan_s1 + "<br>");
+                    document.write("Liczba elementów br: " + lBr_s1 + "<br>");
+                    document.write("Łączna liczba: " + suma_s1 + "<br><br>");
+
+                    const s2 = document.getElementById('zad2');
+
+                    const lH3_s2 = s2.getElementsByTagName('h3').length;
+                    const lP_s2 = s2.getElementsByTagName('p').length;
+                    const lStrong_s2 = s2.getElementsByTagName('strong').length;
+                    const lSpan_s2 = s2.getElementsByTagName('span').length;
+                    const lBr_s2 = s2.getElementsByTagName('br').length;
+
+                    const suma_s2 = lH3_s2 + lP_s2 + lStrong_s2 + lSpan_s2 + lBr_s2;
+
+                    document.write("<strong>Sekcja zad2:</strong><br>");
+                    document.write("Liczba elementów h3: " + lH3_s2 + "<br>");
+                    document.write("Liczba elementów p: " + lP_s2 + "<br>");
+                    document.write("Liczba elementów strong: " + lStrong_s2 + "<br>");
+                    document.write("Liczba elementów span: " + lSpan_s2 + "<br>");
+                    document.write("Liczba elementów br: " + lBr_s2 + "<br>");
+                    document.write("Łączna liczba: " + suma_s2);
+
+                </script>
+
+            </section>
+
+            <section id="zad4">
+
+                <script>
+
+                    document.write("<h3>ZADANIE 4.</h3>");
+
+                    document.write('<button onclick="mojeDane()"> Pokaż moje dane </button>');
+
+                    document.write("<p>Wypisanie za pomocą while pierwszej połowy tablicy: </p>");
+                    var i = 0;
+                    
+                    document.write("<span id='Tabcz1'>")
+
+                        while(i<panstwaAzja.length/2){
+                            var t = i+1
+                            document.write("<p>Panstwo nr. "+t+": "+panstwaAzja[i]+"</p>");
+                            i++
+                        }
+
+                    document.write("</span>")
+
+                    document.write("<p>Wypisanie za pomocą for drugiej połowy tablicy: </p>");
+                        
+                    document.write("<span id='Tabcz2'>")
+                    
+                        for (i; i<panstwaAzja.length; i++) {
+                            t++
+                            document.write("<p>Panstwo nr. "+t+": "+panstwaAzja[i]+" </p>");
+                        }
+
+                    document.write("</span>")
+                    
+                    function mojeDane(){
+                    
+                        const tab1 = document.getElementById("Tabcz1").innerText;
+                        const tab2 = document.getElementById("Tabcz2").innerText;
+
+                        const wiadomosc = 
+                            "Witaj na mojej stronie! \n" +
+                            "Poznasz teraz niektóre państwa Azji: \n\n" +
+                            tab1 +
+                            tab2;
+                            
+                        alert(wiadomosc)
+                    }
+
+                </script>
+
+            </section>
+
+            <section id="zad5">
+                
+                <script>
+                    
+                    document.write("<h3>ZADANIE 5.</h3>");
+                    document.write('<div id="quiz"></div>');
             
-
-            <script>
-
-                const panstwa = ['Watykan',
-                                'San Marino',   
-                                'Andora',   
-                                'Monako',
-                                'Lichtenstein'
-                            ];
-    
-                panstwa[panstwa.length-1] = 'Czechosłowacja';
-
-                panstwa[5]='Kosowo';
-
-                panstwa[panstwa.length]='Bośnia i Hercegowina';
-
-                panstwa.push('Serbia','Chorwacja','Słowenia');
-
-                panstwa.unshift('Czarnogóra','Macedonia Północna');
-
-                panstwa.pop();
-                panstwa.shift();
+                    const pytania = [
+                        ['Co jest stolicą Watykanu?', 'Watykan'],
+                        ['Czy Turcja znajduje się na dwóch kontynentach? (Tak/Nie)', 'Tak'],
+                        ['Jakie państwo graniczy z Polską od południa i jest znane z Tatr?', 'Słowacja'],
+                        ['Czy Kanada leży w Europie? (Tak/Nie)', 'Nie'],
+                        ['Jakie państwo ma flagę z czerwonym liściem klonu?', 'Kanada']
+                    ];
+            
+                    var indeksPytania = 0;
+                    var wynik = 0;
+            
+                    function pokazPytanie() {
+                        if (indeksPytania < pytania.length) {
+                            const trescPytania = pytania[indeksPytania][0];
+                            const numer = indeksPytania + 1;
+                            const calkowitaLiczba = pytania.length;
+            
+                            var zawartosc =
+                                "<p><strong>Pytanie " + numer + " z " + calkowitaLiczba + ":</strong> " + trescPytania + "</p>" +
+                                "<input type='text' id='odpowiedz'>" +
+                                "<button onclick='nastepnePytanie()'>Dalej</button>";
+            
+                            document.getElementById('quiz').innerHTML = zawartosc;
+                        } else {
+                            let podsumowanie =
+                                "<p><strong>Koniec quizu!</strong><br>Twój wynik to: " +
+                                wynik + " / " + pytania.length + "</p>";
+            
+                            document.getElementById('quiz').innerHTML = podsumowanie;
+                        }
+                    }
+            
+                    function nastepnePytanie() {
+                        const odpowiedzUzytkownika = document.getElementById('odpowiedz').value.trim().toLowerCase();
+                        const poprawnaOdpowiedz = pytania[indeksPytania][1].toLowerCase();
+            
+                        if (odpowiedzUzytkownika == poprawnaOdpowiedz) {
+                            wynik++;
+                        }
+                        indeksPytania++;
+                        pokazPytanie();
+                    }
+                    
+                    pokazPytanie();
                 
-                var pobierz = document.getElementById('t1')
-                var pobierz2 = document.getElementById('t2')
-               
-                pobierz.innerHTML=panstwa[2];
-                pobierz2.innerHTML=panstwa[panstwa.length-1];
-
-                //---------------------------------------------------------------------------\\
-
-                panstwaAzja=['Indonezja','Singapur','Brunei','Timor Wchodni','Papua Nowa Gwinea'];
-
-                document.write('<p>Pierwszy element to <strong>');
-                document.write(panstwaAzja[0] + '</strong></p>');
-                
-                document.write('<p>Ostatni element to <strong>');
-                document.write(panstwaAzja[panstwaAzja.length-1] + '</strong></p>');
-
-                panstwaAzja.unshift('Malezja');
-
-                document.write('<p>Element pierwszy teraz to <strong>');
-                document.write(panstwaAzja[0] + '</strong></p>');
-                
-                //---------------------------------------------------------------------------\\
-
-                const Zmienna = document.scripts.length
-                document.write("<p>Ilosc Elementów <i>"+Zmienna+"</i>  bo w sumie tylko jeden script jest...</p>")
-                
-                //----------------------------------------------------------------------------\\
-
-                im = document.getElementById("imie");
-                na = document.getElementById("nazwisko");
-
-                im.innerHTML="Kacper";
-                na.innerHTML="Woszczyło";
-                
-                var i = 0;
-                while(i<panstwaAzja.length/2){
-                    var t = i+1
-                    document.write("<p>Panstwo "+t+" "+panstwaAzja[i]+"</p>");
-                    i++
-                }
-
-
-
-    
-            </script>
-
-
+                </script> 
+        
+            </section>
+        
         </section>
-
+            
         <footer>
         
-            Autor: Kacper Woszczyło Nr. indeksu: 21324 Data aktualizacji: 14.04.2025
+            Autor: Kacper Woszczyło Nr. indeksu: 21324 Data aktualizacji: 22.04.2025
         
         </footer>
 
