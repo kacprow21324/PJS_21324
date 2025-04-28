@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pl">
+    
+    <head>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Testowanie Javy</title>
+
+        <link rel="stylesheet" href="">
+
+    
+    </head>
+  
+    <body>
+
+        <nav>
+            
+            <h1>Testowanie java scripta 2 - Quiz</h1>
+            
+        </nav>
+
+        <section id="main-page" class="Srodek">
+
+            <section id="zad1">
+                
+                <script>
+                    
+                    document.write('<div id="quiz"></div>');
+            
+                    const pytania = [
+                        ['Co jest stolicą Watykanu?', 'Watykan'],
+                        ['Czy Turcja znajduje się na dwóch kontynentach? (Tak/Nie)', 'Tak'],
+                        ['Jakie państwo graniczy z Polską od południa i jest znane z Tatr?', 'Słowacja'],
+                        ['Czy Kanada leży w Europie? (Tak/Nie)', 'Nie'],
+                        ['Jakie państwo ma flagę z czerwonym liściem klonu?', 'Kanada']
+                    ];
+            
+                    var indeksPytania = 0;
+                    var wynik = 0;
+            
+                    function pokazPytanie() {
+                        if (indeksPytania < pytania.length) {
+                            const trescPytania = pytania[indeksPytania][0];
+                            const numer = indeksPytania + 1;
+                            const calkowitaLiczba = pytania.length;
+            
+                            var zawartosc =
+                                "<p><strong>Pytanie " + numer + " z " + calkowitaLiczba + ":</strong> " + trescPytania + "</p>" +
+                                "<input type='text' id='odpowiedz'>" +
+                                "<button onclick='nastepnePytanie()'>Dalej</button>";
+            
+                            document.getElementById('quiz').innerHTML = zawartosc;
+                        } else {
+                            let podsumowanie =
+                                "<p><strong>Koniec quizu!</strong><br>Twój wynik to: " +
+                                wynik + " / " + pytania.length + "</p>";
+            
+                            document.getElementById('quiz').innerHTML = podsumowanie;
+                        }
+                    }
+            
+                    function nastepnePytanie() {
+                        const odpowiedzUzytkownika = document.getElementById('odpowiedz').value.trim().toLowerCase();
+                        const poprawnaOdpowiedz = pytania[indeksPytania][1].toLowerCase();
+            
+                        if (odpowiedzUzytkownika == poprawnaOdpowiedz) {
+                            wynik++;
+                        }
+                        indeksPytania++;
+                        pokazPytanie();
+                    }
+                    
+                    pokazPytanie();
+                
+                </script>
+
+            </section>
+
+        <footer>
+        
+            Autor: Kacper Woszczyło Nr. indeksu: 21324 Data aktualizacji: 28.04.2025
+        
+        </footer>
+
+    </body>
+
+</html>
