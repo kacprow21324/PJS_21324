@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://github.com/kacprow21324/PJS_21324/tree/main/Woszczy%C5%82oKacper21324/LAB6prod/build",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
