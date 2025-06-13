@@ -1,0 +1,106 @@
+:root {
+  --bg-color: #f4ecd8;
+  --text-color: #4b2e0d;
+  --accent-color: #8b4513;
+  --heading-font: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0.5rem 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--heading-font);
+  overflow-y: auto;
+}
+
+.App {
+  background: rgba(244, 236, 216, 0.9);
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+button {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+button:hover {
+  background: #663c14;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  border-left: 3px solid var(--accent-color);
+  border-radius: 4px;
+}
+
+ul li::before {
+  content: "✦";
+  margin-right: 0.5rem;
+  color: var(--accent-color);
+}
+
+ul li button {
+  margin: 0;
+  align-self: center;
+}
+
+ul li::before {
+  content: "✦";
+  position: absolute;
+  left: 0.5rem;
+  color: var(--accent-color);
+}
+
+ul li button {
+  display: block;
+  margin: 0.5rem 1rem 0 auto;
+}
+

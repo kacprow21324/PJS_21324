@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useCallback, useState } from "react"
 import Counter from './Counter.tsx';
-import ProductList from './ProductList.js';
 
 function handleClick() {
     console.log("Kliknięto przycisk!")
@@ -19,27 +17,27 @@ export default function App() {
 
   return (
     <div>
-        
+        <h1>Laboratorium 9</h1>
         <div>
-            <h4>Zad1</h4>
+            <h2>Zadanie 1</h2>
             <button onClick={handleClick}>Kliknij mnie</button>
             <button onClick={() => console.log("kliknieto ale w inline.")}>Kliknij mnie jako onClick inline</button>
         </div>
 
         <div>
-            <h4>Zad2</h4>
+            <h2>Zadanie 2</h2>
             <button onClick={() => setCount((c) => c + 1)}>Zwiększ:{count}</button>
             <Counter onLog={() => console.log("Licznik:", count)} />
         </div>
 
         <div>
-            <h4>Zad3</h4>
+            <h2>Zadanie 3</h2>
             <button onClick={() => setCount((c) => c + 1)}>Zwiększ:{count}</button>
             <Counter onLog={onLog} />
         </div>
 
         <div>
-            <h4>Zad4</h4>
+            <h2>Zadanie 4</h2>
             <ul>
               {products.map((product) => (
                 <li key={product}>
