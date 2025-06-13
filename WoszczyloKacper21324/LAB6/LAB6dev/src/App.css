@@ -1,0 +1,124 @@
+:root {
+  --bg-gradient-start: #f0f4f8;
+  --bg-gradient-end: #d9e2ec;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --text-color: #333333;
+  --primary-color: #007BFF;
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.App {
+  display: block;
+  text-align: center;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  margin: 3rem auto;
+  max-width: 800px;
+  padding: 2.5rem;
+}
+
+.App-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-weight: 300;
+  margin: 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+
+.App > * {
+  margin: 1.5rem auto;
+  max-width: 100%;
+}
+
+button, .btn {
+  display: block;
+  margin: 1rem auto;
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+button:hover, .btn:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Inputs centered with max width */
+input, select, textarea {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  margin: 0.5rem auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Center list items */
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+ul li {
+  margin: 0.25rem 0;
+}
+
+.App-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.App-link:hover {
+  color: #0056b3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+    animation: none;
+  }
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
