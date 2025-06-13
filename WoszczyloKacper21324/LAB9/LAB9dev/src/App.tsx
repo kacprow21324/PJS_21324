@@ -13,17 +13,14 @@ import { useTheme, ThemeProvider } from "./ThemeContext.tsx";
 import Test5 from './Test5.tsx';
 
 function ThemeSwitcher() {
-    const { dark, toggleTheme } = useTheme();
-    return (
-        <div style={{ background: dark ? "#333" : "#fff", color: dark ? "#fff" : "#000" }}>
-            <button onClick={toggleTheme}>Przełącz motyw</button>
-        </div>
-    );
+  const { dark, toggleTheme } = useTheme();
+  return <button onClick={toggleTheme}>Przełącz motyw</button>;
 }
 
 function App() {
   return (
       <div>
+          <h1 id="naglowek">Laboratorium 10</h1>
           <h1>Test licznika kliknięć: useRef</h1>
           <Test/>
           <hr/>
@@ -40,9 +37,6 @@ function App() {
           <hr/>
           <h1>Pomiar wysokości komponentu: useLayoutEffect</h1>
           <Test5/>
-          
-
-
 
       </div>
   );

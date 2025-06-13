@@ -12,7 +12,7 @@ export default function LayoutEffectExample() {
     return (
         <div>
             
-            <div ref={boxRef} style={{ padding: "20px", background: "#ddd" }}>
+            <div ref={boxRef} style={{ padding: "122px", background: "#808080" }}>
                 Mierzę swoją wysokość!
             </div>
             
