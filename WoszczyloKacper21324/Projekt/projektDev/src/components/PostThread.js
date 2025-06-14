@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../App.css';
 
-export default function PostThread({ post, user, onVoteReply, onReply }) {
-  const [replyText, setReplyText]         = useState('');
-  const [activeReplyTo, setActiveReplyTo] = useState(null);
+// Wydzielony formularz odpowiedzi z memoizacją
+const ReplyForm = React.memo(function ReplyForm({ replyText, onChange, onSend }) {
+  const ref = useRef(null);
 
-  // Tu trzymamy stan open/closed dla każdego r.id
+  useEffect(() => {
+    if (!ref.current) return;
+    // focus + ustawienie kursora na końcu
+    ref.current.focus();
+    const len = ref.current.value.length;
+    ref.current.setSelectionRange(len, len);
+  }, []);
+
+  return (
+    <div style={{ marginTop: '.5rem' }}>
+      <textarea
+        ref={ref}
+        placeholder="Twoja odpowiedź…"
+        value={replyText}
+        onChange={onChange}
+        style={{ width: '100%', minHeight: '3rem' }}
+      />
+      <button className="btn" onClick={onSend}>
+        Wyślij
+      </button>
+    </div>
+  );
+});
+
+export default function PostThread({ post, user, onVoteReply, onReply }) {
+  const [replyText, setReplyText] = useState('');
+  const [activeReplyTo, setActiveReplyTo] = useState(null);
   const [openMap, setOpenMap] = useState({});
 
   const toggleOpen = id => {
@@ -15,21 +41,17 @@ export default function PostThread({ post, user, onVoteReply, onReply }) {
     }));
   };
 
-  // Pomocnik do top-level i dzieci
-  const topReplies   = post.replies.filter(r => r.parentId == null);
+  const topReplies = post.replies.filter(r => r.parentId == null);
   const childReplies = id => post.replies.filter(r => r.parentId === id);
 
-  // Komponent pojedynczej odpowiedzi (rekurencyjnie)
   const ReplyItem = ({ r, depth = 0 }) => {
     const children = childReplies(r.id);
-    // domyślnie open = true, jeśli undefined w mapie
     const open = openMap[r.id] ?? true;
 
-    // wybór klasy score
     let cls = 'reply-score ';
-    if (r.score > 0)      cls += 'positive';
+    if (r.score > 0) cls += 'positive';
     else if (r.score < 0) cls += 'negative';
-    else                   cls += 'neutral';
+    else cls += 'neutral';
 
     return (
       <div className="reply" style={{ marginLeft: depth * 20 }}>
@@ -62,26 +84,16 @@ export default function PostThread({ post, user, onVoteReply, onReply }) {
             </button>
 
             {activeReplyTo === r.id && (
-              <div style={{ marginTop: '.5rem' }}>
-                <textarea
-                  autoFocus
-                  placeholder="Twoja odpowiedź…"
-                  value={replyText}
-                  onChange={e => setReplyText(e.target.value)}
-                  style={{ width: '100%', minHeight: '3rem' }}
-                />
-                <button
-                  className="btn"
-                  onClick={() => {
-                    if (!replyText) return;
-                    onReply(post.id, r.id, replyText);
-                    setReplyText('');
-                    setActiveReplyTo(null);
-                  }}
-                >
-                  Wyślij
-                </button>
-              </div>
+              <ReplyForm
+                replyText={replyText}
+                onChange={e => setReplyText(e.target.value)}
+                onSend={() => {
+                  if (!replyText) return;
+                  onReply(post.id, r.id, replyText);
+                  setReplyText('');
+                  setActiveReplyTo(null);
+                }}
+              />
             )}
 
             {children.map(cr => (
@@ -101,7 +113,6 @@ export default function PostThread({ post, user, onVoteReply, onReply }) {
         <ReplyItem key={r.id} r={r} />
       ))}
 
-      {/* dolny formularz tylko gdy nie odpowiadamy w wątku */}
       {activeReplyTo === null && (
         <div className="reply" style={{ marginTop: '1rem' }}>
           <textarea
