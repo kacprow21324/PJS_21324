@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../App.css';
 
-// Wydzielony formularz odpowiedzi z memoizacją
+// Wydzielony formularz odpowiedzi z memoizacją i automatycznym przesuwaniem kursora
 const ReplyForm = React.memo(function ReplyForm({ replyText, onChange, onSend }) {
   const ref = useRef(null);
 
   useEffect(() => {
     if (!ref.current) return;
-    // focus + ustawienie kursora na końcu
+    // Ustaw focus i przesuń kursor na koniec przy każdej zmianie replyText
     ref.current.focus();
     const len = ref.current.value.length;
     ref.current.setSelectionRange(len, len);
-  }, []);
+  }, [replyText]);
 
   return (
     <div style={{ marginTop: '.5rem' }}>
@@ -97,7 +97,7 @@ export default function PostThread({ post, user, onVoteReply, onReply }) {
             )}
 
             {children.map(cr => (
-              <ReplyItem key={cr.id} r={cr} depth={depth + 1} />
+              <ReplyItem key={`${r.id}-${cr.id}`} r={cr} depth={depth + 1} />
             ))}
           </div>
         )}
