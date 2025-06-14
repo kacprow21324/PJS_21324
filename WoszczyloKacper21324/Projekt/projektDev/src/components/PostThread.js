@@ -64,7 +64,8 @@ export default function PostThread({ post, user, onVoteReply, onReply }) {
             {activeReplyTo === r.id && (
               <div style={{ marginTop: '.5rem' }}>
                 <textarea
-                  placeholder="Twoja odpowiedź..."
+                  autoFocus
+                  placeholder="Twoja odpowiedź…"
                   value={replyText}
                   onChange={e => setReplyText(e.target.value)}
                   style={{ width: '100%', minHeight: '3rem' }}

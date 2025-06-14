@@ -2,8 +2,8 @@
   --bg-dark: #111;
   --bg-medium: #222;
   --border: #444;
-  --primary-blue: #08f;
-  --primary-cyan: #0ff;
+  --primary-blue: #1de9b6;
+  --primary-cyan: #00bfa6;
   --neon-yellow: #ffeb3b;
   --purple-light: #b39ddb;
   --purple-dark: #7e57c2;
@@ -14,10 +14,13 @@
   --text-secondary: #bbb;
 }
 
-/* Reset i baza */
-body, html, #root {
+/* Reset */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+html, body, #root {
   height: 100%;
 }
 body {
@@ -26,66 +29,155 @@ body {
   color: var(--text-light);
 }
 
-/* Kontener */
+/* Container */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
 
-/* Nagłówek w aplikacji */
+/* Blog title */
+.blog-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--primary-cyan);
+  margin: 2rem 0 1rem;
+}
+
+/* Authentication Wrapper */
+.auth-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Auth Panels */
+.auth-panels {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.login-panel,
+.register-panel {
+  flex: 1;
+  max-width: 400px;
+  background: var(--bg-medium);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.login-panel h2,
+.register-panel h2 {
+  font-size: 2rem;
+  color: var(--primary-cyan);
+  border-bottom: 2px solid var(--primary-cyan);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.login-panel p {
+  color: var(--text-medium);
+  margin-bottom: 1rem;
+}
+
+/* Shared Input & Textarea */
+.login-panel input,
+.register-panel input,
+.new-post-form input,
+.new-post-form textarea,
+.post.new-post input,
+.post.new-post textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  text-align: center;
+  resize: vertical;
+}
+.login-panel input::placeholder,
+.register-panel input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Header (Logged In) */
 header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 header h1 {
-  flex: 1;
   font-size: 2rem;
-  margin: 0;
-  color: #fff;
+  color: var(--primary-cyan);
 }
 
-/* Wspólne reguły dla przycisków */
+/* Buttons: unified style */
 .btn,
 .btn-like,
 .btn-dislike,
-.btn-delete {
+.btn-delete,
+.btn.logout {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  margin: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem 0.25rem;
   border: none;
   border-radius: 8px;
-  color: #fff;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.2s;
+  text-align: center;
+  color: #fff;
 }
-
-/* Zredukowane światło (glow) */
-.btn {
-  background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
-  box-shadow: 0 0 4px var(--primary-cyan);
-}
-.btn:hover {
+.btn:hover,
+.btn-like:hover,
+.btn-dislike:hover,
+.btn-delete:hover,
+.btn.logout:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 6px var(--primary-cyan);
 }
-.btn:active {
+.btn:active,
+.btn-like:active,
+.btn-dislike:active,
+.btn-delete:active,
+.btn.logout:active {
   transform: translateY(0);
   box-shadow: none;
 }
 
-/* Przycisk Lubię – ten sam glow co pozytywny wynik posta */
+/* Default "Add Post" button */
+.btn {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+  box-shadow: 0 0 4px var(--primary-cyan);
+  margin-top: 1rem;
+}
+.btn:hover {
+  box-shadow: 0 0 6px var(--primary-cyan);
+}
+
+/* Logout button */
+.btn.logout {
+  background: var(--primary-cyan);
+  box-shadow: 0 0 4px var(--primary-cyan);
+}
+
+/* Like button */
 .btn-like {
   background: linear-gradient(135deg, var(--neon-yellow), #ffc107);
   box-shadow: 0 0 4px var(--neon-yellow);
+  color: #000;
 }
 .btn-like:hover {
   box-shadow: 0 0 6px var(--neon-yellow);
 }
 
-/* Przycisk Nie lubię */
+/* Dislike button */
 .btn-dislike {
   background: linear-gradient(135deg, var(--purple-light), var(--purple-dark));
   box-shadow: 0 0 4px var(--purple-light);
@@ -94,7 +186,7 @@ header h1 {
   box-shadow: 0 0 6px var(--purple-light);
 }
 
-/* Przycisk Usuń */
+/* Delete button */
 .btn-delete {
   background: linear-gradient(135deg, var(--danger-light), var(--danger-dark));
   box-shadow: 0 0 4px var(--danger-light);
@@ -103,327 +195,238 @@ header h1 {
   box-shadow: 0 0 6px var(--danger-light);
 }
 
-/* Formularz nowego posta */
+/* Shared Forms (New Post) */
+.new-post-form,
 .post.new-post {
   background: var(--bg-medium);
   border-radius: 8px;
   padding: 2rem;
-  margin-bottom: 1.5rem;
+  margin: 2rem auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.new-post h2 {
+.new-post-form {
+  max-width: 800px;
+}
+.post.new-post {
+  max-width: 1000px;
+}
+.new-post-form h2,
+.post.new-post h2 {
   text-align: center;
   font-size: 1.5rem;
-  margin: 0 0 0.5rem;
-  color: #fff;
+  color: var(--text-light);
+  margin-bottom: 1rem;
 }
-.new-post p {
+.post.new-post p {
   text-align: center;
-  margin: 0 0 1rem;
   color: var(--text-medium);
-}
-.post.new-post input[type="text"],
-.post.new-post textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.25rem 0;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-.post.new-post textarea {
-  resize: vertical;
+  margin-bottom: 1.5rem;
 }
 
-/* Styl pól i textarea w regularnych postach */
-.post input,
-.post textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.25rem 0;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+/* Post List */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;  /* zwiększony odstęp między postami */
 }
-.post textarea {
-  resize: vertical;
-}
-
-.post.new-post .btn {
-  display: block;
-  margin: 1rem auto 0;
-}
-
-/* Karty posta */
 .post {
   background: var(--bg-medium);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
-  margin: 0.75rem 0;
+  margin-bottom: 1.5rem; /* dodatkowy odstęp */
   transition: box-shadow 0.2s;
 }
 .post:hover {
   box-shadow: 0 0 8px var(--primary-blue);
 }
-.post .post-author {
+.post-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  /* remove padding so title and author center correctly */
+}
+.post-header .toggle-btn {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+}
+.post-header h3 {
+  font-size: 2.25rem;  /* powiększony rozmiar nagłówka */
+  margin: 0.25rem 0;
+  color: var(--primary-cyan);
+}
+.post-header .post-author {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.post-header .toggle-btn {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+}
+.post-header h3 {
+  font-size: 1.75rem;
+  margin: 0.25rem 0;
+  color: var(--primary-cyan);
+}
+.post-header h3 {
+  font-size: 1.75rem;
+  margin: 0.25rem 0;
+  color: var(--primary-cyan);
+}
+.post-author {
+  font-size: 1rem;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
-}
-.post h3 {
   text-align: center;
-  font-size: 1.5rem;
-  margin: 0.25rem 0;
-}
-.post .post-text {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
-}
-.post .post-score {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
-}
-.post .post-score.positive {
-  color: var(--neon-yellow);
-  text-shadow: 0 0 8px var(--neon-yellow);
-}
-.post .post-score.negative {
-  color: var(--purple-light);
-  text-shadow: 0 0 8px var(--purple-light);
-}
-
-/* Odpowiedzi */
-.reply {
-  background: var(--bg-medium);
-  border-left: 3px solid var(--primary-blue);
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin: 0.75rem 0 0 1rem;
-}
-.reply textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  resize: vertical;
 }
-.reply .reply-score {
-  font-size: 1rem;
-  margin: 0 0.5rem;
-}
-.reply .reply-score.positive {
-  color: var(--neon-yellow);
-  text-shadow: 0 0 6px var(--neon-yellow);
-}
-.reply .reply-score.negative {
-  color: var(--purple-light);
-  text-shadow: 0 0 6px var(--purple-light);
-}
-
-/* Panel logowania */
-.login-panel {
-  text-align: center;
-  padding: 2rem;
-  background: var(--bg-medium);
-  border-radius: 8px;
-  margin-top: 2rem;
-}
-.login-panel h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--primary-cyan);
-  border-bottom: 2px solid var(--primary-cyan);
-  display: inline-block;
-  padding-bottom: 0.5rem;
-}
-.login-panel p {
-  color: var(--text-light);
-  margin: 0.5rem 0;
-}
-.login-panel input[type="text"],
-.login-panel input[type="password"] {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  padding: 0.5rem;
-  margin: 0.5rem auto;
-  background: #000;
-  color: var(--text-light);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  text-align: center;
-}
-.login-panel input[type="text"]::placeholder,
-.login-panel input[type="password"]::placeholder {
-  color: var(--text-medium);
-}
-.login-panel .btn {
-  display: block;
-  margin: 1rem auto 0;
-}
-
-/* Responsywność */
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.5rem;
-  }
-  .btn,
-  .btn-like,
-  .btn-dislike,
-  .btn-delete {
-    padding: 0.75rem 1.25rem;
-  }
-}
-.post {
-  text-align: left;
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-}
-
-.post-header {
-  cursor: pointer;
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
-}
-
-.post-author {
-  color: #666;
-  font-size: 0.9rem;
-  margin: 0 0 0.75rem;
-}
-
 .post-content {
-  margin: 0 0 0.75rem;
+  margin: 0.75rem 0;
 }
-
 .post-footer {
-  border-top: 1px solid #ccc;
-  padding-top: 0.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
 }
-
-.post-actions button {
-  margin-left: 0.5rem;
+.post-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
 }
-
-.post-actions button {
-  border: none;
-  padding: 0.4rem 0.8rem;
-  margin-left: 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: box-shadow .2s;
-}
-
-/* Lubię */
-.btn-like {
-  background-color: #ffd700;
-  color: #222;
-}
-.btn-like.active,
-.btn-like:hover {
-  box-shadow: 0 0 5px #ffd700;
-}
-
-/* Nie lubię */
-.btn-dislike {
-  background-color: #9370db;
-  color: #fff;
-}
-.btn-dislike.active,
-.btn-dislike:hover {
-  box-shadow: 0 0 5px #9370db;
-}
-
-/* Usuń */
-.btn-delete {
-  background-color: #e74c3c;
-  color: #fff;
-}
-.btn-delete:hover {
-  box-shadow: 0 0 5px #e74c3c;
-}
-
-/* Podświetlenie liczby polubień */
+/* Like count color based on value via classes for posts */
 .post-score {
+  font-size: 1.25rem;
   font-weight: bold;
+  color: #fff;
 }
-.post-score.liked {
-  text-shadow: 0 0 5px #ffd700;
+.post-score.positive {
+  color: var(--neon-yellow);
 }
-.post-score.disliked {
-  text-shadow: 0 0 5px #9370db;
+.post-score.negative {
+  color: var(--purple-light);
 }
-
-.toggle-btn {
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-right: 0.5rem;
+.post-score.neutral {
+  color: #fff;
 }
 
-/* Rekursywne wcięcie odpowiedzi */
+/* Label next to score */
+.post-score-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 0.25rem;  /* zmniejszony odstęp */
+}
+
+/* Like count color based on value via classes for replies */
+.reply-score {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+.reply-score.positive {
+  color: var(--neon-yellow);
+}
+.reply-score.negative {
+  color: var(--purple-light);
+}
+.reply-score.neutral {
+  color: #fff;
+}
+
+/* Replies: black background and reddit-like threads *//* Replies: black background and reddit-like threads */
 .nested-replies {
-  margin-left: 1.5rem;
-  border-left: 1px solid rgba(255,255,255,0.2);
+  margin-left: 1rem;
+  border-left: 4px solid var(--primary-cyan);
   padding-left: 1rem;
 }
-
-/* Reply box */
 .reply {
+  position: relative;
+  background: transparent;
+  padding: 0.75rem 1rem;
   margin: 0.75rem 0;
+  border-left: 4px solid var(--primary-cyan);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.nested-replies .reply {
+  border-left: 4px solid var(--purple-light);
 }
 .reply-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 .reply-author {
   font-weight: bold;
 }
 .reply-text {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
 }
-.reply-actions button {
-  margin-right: 0.5rem;
-  background: #444;
-  color: #fff;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 3px;
-  cursor: pointer;
+.reply-actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
-/* Formularz odpowiedzi */
-.reply-form {
-  margin-top: 1rem;
-}
+/* Reply Form Styling */
 .reply-form textarea {
-  width: 100%;
-  height: 4rem;
-  margin-bottom: 0.5rem;
+  display: block;
+  width: 100% !important;
+  min-height: 5rem;
+  background-color: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+.reply-form textarea::placeholder {
+  color: var(--text-secondary) !important;
 }
 .reply-form button {
-  padding: 0.4rem 0.8rem;
+  /* Inherit .btn styles, ensure background matches reply button color */
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-cyan));
+  box-shadow: 0 0 4px var(--primary-cyan);
+  color: #fff;
+}
+/* Toggle Button */
+.toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+}
+.toggle-btn.open {
+  transform: rotate(180deg);
 }
 
-.post .post-score.neutral {
-  color: #fff;
-  text-shadow: none;
+/* Override reply textarea styling */
+.reply textarea,
+.reply-form textarea,
+.post-footer textarea {
+  background: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+  border: 1px solid var(--border) !important;
 }
 
-/* analogicznie dla małych odpowiedzi, jeśli ich wynik ma być również biały */
-.reply .reply-score.neutral {
-  color: #fff;
-  text-shadow: none;
+/* Responsive */
+@media (max-width: 600px) {
+  .auth-panels {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }

@@ -32,9 +32,10 @@ export default function PostList({ posts, user, onVote, onVoteReply, onReply, on
 
             {/* Polubienia i akcje */}
             <div className="post-footer">
-              <span className={`post-score ${p.userVote === 'up' ? 'liked' : p.userVote === 'down' ? 'disliked' : ''}`}>
-                Polubień: {p.score}
-              </span>
+               <span className="post-score-label">Polubień:</span>
+                <span className={`post-score ${p.score>0?'positive':p.score<0?'negative':'neutral'}`}>
+                  {p.score}
+                </span>
               <div className="post-actions">
                 <button
                   className={`btn-like ${p.userVote === 'up' ? 'active' : ''}`}
