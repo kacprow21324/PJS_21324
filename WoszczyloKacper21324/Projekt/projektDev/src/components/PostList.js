@@ -49,12 +49,15 @@ export default function PostList({ posts, user, onVote, onVoteReply, onReply, on
                 >
                   Nie lubię
                 </button>
-                <button
-                  className="btn-delete"
-                  onClick={() => onDelete(p.id)}
-                >
-                  Usuń
-                </button>
+                {/* Przycisk usuwania widoczny tylko dla autora lub Admina */}
+                {user && (user === p.user || user === 'Admin') && (
+                  <button
+                    className="btn-delete"
+                    onClick={() => onDelete(p.id)}
+                  >
+                    Usuń
+                  </button>
+                )}
               </div>
             </div>
 
